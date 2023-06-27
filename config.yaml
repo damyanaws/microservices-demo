@@ -51,7 +51,7 @@ spec:
    spec:
     containers:
     - name: service
-      image: github.com/damyanaws/microservices-demo/tree/master/src/recommendationservice
+      image: 245729138833.dkr.ecr.eu-west-3.amazonaws.com/microservices:recommendationservice
       ports:
       - containerPort: 8080
       env:
@@ -59,6 +59,9 @@ spec:
         value: "8080"
       - name: PRODUCT_CATALOG_SERVICE_ADDR
         value: "productcatalogservice:3550"
+    imagePullSecrets:
+    - name: regcred
+    
 ---
 apiVersion: v1
 kind: Service
@@ -88,12 +91,14 @@ spec:
    spec:
     containers:
     - name: service
-      image: github.com/damyanaws/microservices-demo/tree/master/src/productcatalogservice
+      image: 245729138833.dkr.ecr.eu-west-3.amazonaws.com/microservices:productcatalogservice
       ports:
       - containerPort: 3550
       env:
       - name: PORT
         value: "3550"
+    imagePullSecrets:
+    - name: regcred
 ---
 apiVersion: v1
 kind: Service
@@ -129,6 +134,8 @@ spec:
       env:
       - name: PORT
         value: "50051"
+    imagePullSecrets:
+    - name: regcred
 ---
 apiVersion: v1
 kind: Service
@@ -164,6 +171,8 @@ spec:
       env:
       - name: PORT
         value: "7000"
+    imagePullSecrets:
+    - name: regcred
 ---
 apiVersion: v1
 kind: Service
@@ -193,12 +202,14 @@ spec:
    spec:
     containers:
     - name: service
-      image: github.com/damyanaws/microservices-demo/tree/master/src/shippingservice
+      image: 245729138833.dkr.ecr.eu-west-3.amazonaws.com/microservices:shippingservice
       ports:
       - containerPort: 50051
       env:
       - name: PORT
         value: "50051"
+    imagePullSecrets:
+    - name: regcred
 ---
 apiVersion: v1
 kind: Service
@@ -234,6 +245,8 @@ spec:
       env:
       - name: PORT
         value: "9555"
+    imagePullSecrets:
+    - name: regcred
 ---
 apiVersion: v1
 kind: Service
@@ -271,6 +284,8 @@ spec:
         value: "7070"
       - name: REDIS_ADDR
         value: "redis-cart:6379"
+    imagePullSecrets:
+    - name: regcred
 ---
 apiVersion: v1
 kind: Service
@@ -338,7 +353,7 @@ spec:
    spec:
     containers:
     - name: service
-      image: github.com/damyanaws/microservices-demo/tree/master/src/checkoutservice
+      image: 245729138833.dkr.ecr.eu-west-3.amazonaws.com/microservices:checkoutservice
       ports:
       - containerPort: 5050
       env:
@@ -356,6 +371,8 @@ spec:
         value: "currencyservice:7000"
       - name: CART_SERVICE_ADDR
         value: "cartservice:7070"
+    imagePullSecrets:
+    - name: regcred
 
 ---
 apiVersion: v1
@@ -386,7 +403,7 @@ spec:
    spec:
     containers:
     - name: service
-      image: github.com/damyanaws/microservices-demo/tree/master/src/frontend
+      image: 245729138833.dkr.ecr.eu-west-3.amazonaws.com/microservices:frontend
       ports:
       - containerPort: 8080
       env:
@@ -406,6 +423,8 @@ spec:
         value: "checkoutservice:5050"
       - name: AD_SERVICE_ADDR
         value: "adservice:9555"
+    imagePullSecrets:
+    - name: regcred
       
 ---
 apiVersion: v1
