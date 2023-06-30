@@ -1,13 +1,13 @@
-appName: servicename
+appName: emailservice
 appImage: 245729138833.dkr.ecr.eu-west-3.amazonaws.com/microservices
-appVersion: v0.0.0.0
+appVersion: emailservice
 appReplicas: 1
 containerPort: 8080
 containerEntVars:
-- name: ENV_VAR_ONE
-  value: "valueone"
-- name: ENV_VAR_TWO
-  value: "valuetwo"
+- name: PORT
+  value: "8080"
+imagePullSecrets:
+- name: regcred
 
-servicePort: 8080
+servicePort: 5000
 serviceType: ClusterIP
